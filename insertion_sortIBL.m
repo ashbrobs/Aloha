@@ -19,5 +19,4 @@ end %Ends the foor loop
 end %Ends the function
 
 %you can edit directly from github
-test
 

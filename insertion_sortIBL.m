@@ -17,3 +17,5 @@ for i = 2:n %Iterating over the length of the array. We can't start at 1 because
      end %Ends the while loop.
 end %Ends the foor loop
 end %Ends the function
+
+%you can edit directly from github

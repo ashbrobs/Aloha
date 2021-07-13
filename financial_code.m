@@ -37,5 +37,3 @@ end
 function question2 = q2(~)
     question2 = input("Test2: "); 
 end
-
-%test github edit

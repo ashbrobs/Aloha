@@ -1,6 +1,7 @@
 %greet user and explain situation, needs code
 money = input("input budget: ");
 monthly = 0; % placeholder
+mood = 0; % happiness placeholder
 %above are all the variables needed for the code
 
 

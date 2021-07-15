@@ -18,7 +18,7 @@ elseif a == 2
         disp("car taken");
     end
 else
-    disp("qx test");
+    disp("qx test"); % placeholder test and structure of the code, dont use
 %     answer = input("Test1 answer: "); 
 %     if answer == 1
 %         monthly = monthly + 5;

@@ -1,5 +1,6 @@
-function [money, monthly, mood, monthlymood] = qfunc(a, money, monthly, mood, monthlymood)
-if a == 1
+function [money, monthly, mood, monthlymood] = qfunc(a, money, monthly, mood, monthlymood) 
+% all variables as inputs and outputs
+if a == 1 % if statements call questions
     disp("q1 test");
     disp("Please use the slider to pick your price range for an apartment.");
     disp("The median price for a 1-bdrm apartment in Evanston is $1,195.");
@@ -8,6 +9,7 @@ if a == 1
     money = money - p;
     monthly = monthly + p;
     mood = mood + p/100;
+    % changes variables
     disp(money);
 elseif a == 2
     disp("q2 test");
@@ -34,5 +36,5 @@ else
 %         money = money - 10;
 %     end
 end
-
+% code could use a bit of cleanup but im so lazyyy
 end

@@ -1,4 +1,4 @@
-function [money, monthly] = qfunc(a, money, monthly)
+function [money, monthly, mood, monthlymood] = qfunc(a, money, monthly, mood, monthlymood)
 if a == 1
     disp("q1 test");
     disp("Please use the slider to pick your price range for an apartment.");
@@ -6,7 +6,8 @@ if a == 1
     p = input("Price: ");
     % replace above with a slider using the game code // Leo
     money = money - p;
-    monthly = monthly + p/12;
+    monthly = monthly + p;
+    mood = mood + p/100;
     disp(money);
 elseif a == 2
     disp("q2 test");
@@ -14,8 +15,15 @@ elseif a == 2
     d = input("decision: "); %replace with a menu
     if d == 1
         disp("bus taken");
+        monthly = monthly + 50;
+        mood = mood - 10;
+        monthlymood = monthlymood - 1;
     else
         disp("car taken");
+        money = money - 20000;
+        monthly = monthly + 150;
+        mood = mood + 10;
+        monthlymood = monthlymood + 1;
     end
 else
     disp("qx test"); % placeholder test and structure of the code, dont use

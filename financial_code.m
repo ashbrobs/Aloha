@@ -1,7 +1,8 @@
 %greet user and explain situation, needs code
 money = input("input budget: ");
 monthly = 0; % placeholder
-mood = 0; % happiness placeholder
+mood = 50; % happiness placeholder
+monthlymood = 0;
 loan = 0; % loan placeholder
 %above are all the variables needed for the code
 
@@ -17,14 +18,20 @@ for x = 1:length(questions)
     a = questions(x);
     if money > 0
         money = money - monthly;
+        mood = mood + monthlymood;
+        mood = mood - monthly/1000;
         disp(questions(x));
         % calculate effects using a database of the questions and what they
         % do;; these are placeholders
-        [money, monthly] = qfunc(a, money, monthly);
+        [money, monthly, mood, monthlymood] = qfunc(a, money, monthly, mood, monthlymood);
         disp("total money:");
         disp(money);
         disp("monthly costs:");
         disp(monthly);
+        disp("mood:");
+        disp(mood);
+        disp("monthly change in mood:"); % hide in final code
+        disp(monthlymood);
     else
         takeLoan = input("Take a loan? (1 2): ");
         if takeLoan == 1

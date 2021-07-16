@@ -3,12 +3,11 @@ sa2 = imread('Sa2.png');
 sa3 = imread('Sa3.png');
 sa4 = imread('Sa4.png');
 %load graphics
-text_str = "Learning about what is going on outside of the nation is a great way to look at the big picture! Please select a country on the map (South Africa, Palestine, or China) to focus on.";
-%Prompts user to choose a spot on the map
-imshow(map) %show map
-text(100, 25,text_str,'Color','#D95319','FontSize',12)
-
-
+text_str = "Northwestern";
+imshow(im)
+text(x, y,text_str,'Color','white','FontSize',10)
+imshow(map)
+%show map
 p = ginput(1);
 %ask for user click
 tfo = p(1)>1100 && p(1)<1150;
@@ -17,9 +16,7 @@ tft = p(2)>800 && p(2)<830;
 if tfo && tft == 1
     %The x and y coordinates for the click must both be within the range of
     %error
-    text_str = "Click anywhere to proceed";
     imshow(sa2)
-    text(340, 7,text_str,'Color','#D95319','FontSize',12)
     %Show the information for South Africa
     t = waitforbuttonpress;
  %User clicks to move to next slide
@@ -28,8 +25,6 @@ if tfo && tft == 1
 
     if t == 0
         imshow(sa3)
-        text(360, 7,text_str,'Color','#D95319','FontSize',12)
-       
         h = waitforbuttonpress;
         %User clicks to move to next slide
         if h == 0
@@ -62,7 +57,6 @@ if tfo && tft == 1
 %or
 
 imshow(sa4)
-text(340, 10,text_str,'Color','#D95319','FontSize',12)
 z = waitforbuttonpress;  %This version loads the image first with the question would you like to donate, then shows links in a seprate figure.
 if z == 0
 fig = uifigure

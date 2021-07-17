@@ -8,6 +8,8 @@ imshow(startscreen)
 s = ginput(1);
 tfs = s(1)>1900 && s(1)<2400;
 tfr = s(2)>1600 && s(2)<1750;
+xl = s(1)>1200 && s(1) < 1600;
+yl = s(2)>1500 && s(2) <1800; 
 if tfs && tfr == 1
 %load graphics
 text_str = "Learning about what is going on outside of the nation is a great way to look at the big picture! Please select a country on the map (South Africa, Palestine, or China) to focus on.";
@@ -98,4 +100,7 @@ end
         end
     end
 end
+elseif xl && yl == 1
+    disp('done')
+else close
 end

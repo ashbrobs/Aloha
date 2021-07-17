@@ -1,13 +1,19 @@
+startscreen = imread('Start3-01.png');
 map = imread('map.jpg');
 sa2 = imread('Sa2.png');
 sa3 = imread('Sa3.png');
 sa4 = imread('Sa4.png');
+
+imshow(startscreen)
+s = ginput(1);
+tfs = s(1)>1900 && s(1)<2400;
+tfr = s(2)>1600 && s(2)<1750;
+if tfs && tfr == 1
 %load graphics
 text_str = "Learning about what is going on outside of the nation is a great way to look at the big picture! Please select a country on the map (South Africa, Palestine, or China) to focus on.";
 %Prompts user to choose a spot on the map
 imshow(map) %show map
 text(100, 25,text_str,'Color','#D95319','FontSize',12)
-
 
 p = ginput(1);
 %ask for user click
@@ -83,7 +89,13 @@ hlink3.Text = 'Petition';
 hlink3.URL = 'https://www.thepetitionsite.com/243/366/680/south-africa-stop-discrimination-against-children-with-disabilities/';
 hlink3.Position = [100 160 70 22];
 
+hlink4 = uihyperlink(fig);
+hlink4.Text = 'Read More';
+hlink4.URL = 'https://www.hrw.org/news/2019/05/24/south-africa-children-disabilities-shortchanged';
+hlink4.Position = [100 280 70 22];
+
 end
         end
     end
+end
 end

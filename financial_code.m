@@ -1,5 +1,5 @@
 %greet user and explain situation, needs code
-money = inputdlg("Input Budget for 10 months: "); %Allows user to input budget without leaving figure
+money = inputdlg("Input Budget for 12 months: "); %Allows user to input budget without leaving figure
 money = str2num(money{1}); %converts string to numerical values
 monthly = 0; % placeholder
 mood = 50; % happiness placeholder
@@ -7,10 +7,11 @@ monthlymood = 0; %monthlymood change placeholder
 loan = 0; % loan placeholder
 loanCount = 0; % loancount placeholder
 fail = 0; % fail condition
+pArray = [] % array of prices spent over game
 %above are all the variables needed for the code
 
 
-questions = 1:10; % variables array for questions, second number is number of q
+questions = 1:12; % variables array for questions, second number is number of q
 
 questions = questions(randperm(length(questions))); % randomizes questions
 
@@ -21,12 +22,12 @@ for x = 1:length(questions) % iterates through code number of questions times
     a = questions(x); % sets var a equal to the value in array questions
     if money > 0 
         money = money - monthly; % monthly change in money
-        mood = mood + monthlymood + money/1000 - monthly/1000; % monthly change in mood
-         text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Monthly Change in Mood:",monthlymood, "Click to Proceed"]);
+        mood = mood + monthlymood + money/10000 - monthly/1000; % monthly change in mood
+         text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Click to Proceed"]);
         imshow(bg)
         text(50, 400,text_str,'Color','#D95319','FontSize',25);
         waitforbuttonpress
-        [money, monthly, mood, monthlymood] = qfunc(a, money, monthly, mood, monthlymood);
+        [money, monthly, mood, monthlymood, pArray] = qfunc(a, money, monthly, mood, monthlymood, pArray);
         
         % calls output of the qfunc function
      
@@ -87,7 +88,10 @@ else
         text(50, 600,text_str,'Color','#D95319','FontSize',18);
    
 end
-yn = inputdlg('Would you like to read advice about budgeting (1 = yes, 2 = no)?')
+
+insertion_sortIBL(pArray) % need a new slide for this with explanation
+
+yn = inputdlg('Would you like to read advice about budgeting (1 = yes, 2 = no)?');
  ynx= str2num(yn{1});
  if ynx == 1
 advice=imread('BudgetingAdvice.png'); 

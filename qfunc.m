@@ -1,4 +1,4 @@
-function [money, monthly, mood, monthlymood] = qfunc(a, money, monthly, mood, monthlymood) 
+function [money, monthly, mood, monthlymood, pArray] = qfunc(a, money, monthly, mood, monthlymood, pArray) 
 % all variables as inputs and outputs
 if a == 1 % if statements call questions
 %     disp("q1 test");
@@ -10,6 +10,7 @@ px = inputdlg("Please input your price for an apartment. The median price for a 
     money = money - p;
     monthly = monthly + p;
     mood = mood + p/100;
+    pArray = [pArray p]
     % changes variables
 %     disp(money);
 elseif a == 2
@@ -40,6 +41,20 @@ yc = c(2)>1950 && c(2) <2120;
     else
         close
         disp('fail')
+    end
+elseif a == 3
+    disp("All your friends are going shopping for clothes! Will you go with them?");
+    q = input(" yes = 1, no = 2" );
+    if q == 1
+        p = 500;
+        money = money - p;
+        mood = mood + 10;
+        pArray = [pArray p]
+        disp("Are clothes worth it?");
+    else
+        mood = mood - 25;
+        disp("Are clothes worth it?");
+    % https://www.mathworks.com/help/matlab/ref/questdlg.html 
     end
 else
     pro = imread('pro.png');

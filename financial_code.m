@@ -1,4 +1,6 @@
-%greet user and explain situation, needs code
+FStart = imread('FStart.png');
+imshow(FStart) %Financial literacy start screen
+waitforbuttonpress %Wait for user to click before proceeding. This is used multiple times in our code.
 money = inputdlg("Input Budget for 12 months. Integers only, no commas: "); %Allows user to input budget without leaving figure
 money = str2num(money{1}); %converts string to numerical values
 monthly = 0; % placeholder

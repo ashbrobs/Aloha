@@ -1,8 +1,8 @@
 imshow(si) %Choose screen for U.S. or International current events
 u = ginput(1);
     %ask for user click
-ix = u(1)>500 && u(1)<550;
-iy = u(2)>1950 && u(2)<2150;
+ix = u(1)>250 && u(1)<750;
+iy = u(2)>1850 && u(2)<2250;
     %coordinates with a range of error for user clicks
 if ix && iy == 1
     text_str = "Learning about what is going on outside of the nation is a great way to look at the big picture! Please select a country on the map (South Africa, Palestine, or China) to focus on.";
@@ -68,7 +68,10 @@ if ix && iy == 1
             end
                      end
              end
+        else 
+             close %Our demo currently supports the South Africa selection only
         end
+         
 else
     close %Our demo currently supports the 'International' option only
 end

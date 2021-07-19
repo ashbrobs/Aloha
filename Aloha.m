@@ -18,6 +18,9 @@ yl = s(2)>1500 && s(2) <1800;
 %added for user clicks.
 if tfs && tfr == 1 %If user clicks social justice button
 socialjustice %Runs social justice program.
+%Also see socialjustice.m
+%Only the social justice topic for South Africa is coded. Clicking 'U.S' in the first prompt or
+%any of the other countries in the map will close the game.
 
 elseif xl && yl == 1
     financial_code %Runs financial literacy program

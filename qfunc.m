@@ -68,7 +68,7 @@ elseif a == 4
 %     disp("How much will you be spending on food per month? The average is 320 per month"); %disp as part of image
     i = 0;
     while i == 0
-        px = inputdlg("Amount: ");
+        px = inputdlg("Monthly Food Cost: ");
         p = str2num(px{1});
         if p < 50
                 text_str= (["Try not to starve yourself.", "Food is necessary."]);

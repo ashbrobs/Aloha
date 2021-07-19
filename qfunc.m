@@ -1,26 +1,26 @@
-function [money, monthly, mood, monthlymood, pArray] = qfunc(a, money, monthly, mood, monthlymood, pArray) 
+function [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray) 
 % all variables as inputs and outputs
 if a == 1 % if statements call questions
 %     disp("q1 test");
 %     disp("Please use the slider to pick your price range for an apartment.");
 %     disp("The median price for a 1-bdrm apartment in Evanston is $1,195.");
-px = inputdlg("Please input your price for an apartment. The median price for a 1-bedroom apartment in Evanston is $1,195.");
+    px = inputdlg("Please input your price for an apartment. The median price for a 1-bedroom apartment in Evanston is $1,195.");
     p = str2num(px{1});
     % replace above with a slider using the game code // Leo
     money = money - p;
     monthly = monthly + p;
     mood = mood + p/100;
-    pArray = [pArray p];
+    pmArray = [pmArray p];
     % changes variables
 %     disp(money);
 elseif a == 2
     car = imread('car.png');
     imshow(car)
-c = ginput(1);
-xb = c(1)>460 && c(1)<540;
-yb = c(2)>1480 && c(2)<1620;
-xc = c(1)>480 && c(1) < 580;
-yc = c(2)>1950 && c(2) <2120; 
+    c = ginput(1);
+    xb = c(1)>460 && c(1)<540;
+    yb = c(2)>1480 && c(2)<1620;
+    xc = c(1)>480 && c(1) < 580;
+    yc = c(2)>1950 && c(2) <2120; 
 
 %     disp("q2 test");
 %     disp("Would you like to take the bus (1), or use a car? (2)")
@@ -32,12 +32,15 @@ yc = c(2)>1950 && c(2) <2120;
         monthly = monthly + 105;
         mood = mood - 10;
         monthlymood = monthlymood - 1;
+        pmArray = [pmArray 105];
     elseif xc && yc == 1
 %         disp("car taken");
-        money = money - 500;
+        money = money - 1000;
         monthly = monthly + 400;
         mood = mood + 10;
         monthlymood = monthlymood + 1;
+        pArray = [pArray 1000];
+        pmArray = [pmArray 400];
     else
         close
         disp('fail')
@@ -49,18 +52,36 @@ elseif a == 3
 %response converted to yes/no cases
 switch q
     case 'Yes'
-           p = 500;
+        p = 500;
         money = money - p;
         mood = mood + 10;
         pArray = [pArray p];
 %         disp("Are clothes worth it?");
     case 'No'
          mood = mood - 25;
-%         disp("Are clothes worth it?");
- 
+%        disp("Are clothes worth it?");
 end
-
-    % https://www.mathworks.com/help/matlab/ref/questdlg.html 
+elseif a == 4
+    disp("How much will you be spending on food per month? The average is ___"); %disp as part of image
+    i = 0;
+    while i == 0
+        px = inputdlg("Amount: ");
+        p = str2num(px{1});
+        if p < 50
+            disp("Try not to starve yourself to death. Food is necessary.")
+        else
+            i = 1;
+        end
+    end
+    monthly = monthly + p;
+    pmArray = [pmArray p];
+elseif a == 5
+    disp("NEW LAPTOP ON SALE! 3000 DOLLARS!!!");
+    % yes or no
+    % if yes, money down 3k and mood up
+        % money = money - 3000;
+        % mood = mood + 10
+    % if no then nothing so dont run this case
 else
     pro = imread('pro.png');
     imshow(pro)

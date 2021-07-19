@@ -8,6 +8,7 @@ loan = 0; % loan placeholder
 loanCount = 0; % loancount placeholder
 fail = 0; % fail condition
 pArray = []; % array of prices spent over game
+pmArray = [];
 %above are all the variables needed for the code
 
 
@@ -27,7 +28,7 @@ for x = 1:length(questions) % iterates through code number of questions times
         imshow(bg)
         text(50, 400,text_str,'Color','#D95319','FontSize',25);
         waitforbuttonpress
-        [money, monthly, mood, monthlymood, pArray] = qfunc(a, money, monthly, mood, monthlymood, pArray);
+        [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray);
         
         % calls output of the qfunc function
      
@@ -65,11 +66,10 @@ asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
                 %Intial outcome 1/2 leads to 'lose' (too many loans)
          end
     case 'No'
-             text_str= (["You failed at a debt amount of",abs(money), "Click to Proceed"]);
-        imshow(bg)
-        text(50, 600,text_str,'Color','#D95319','FontSize',20);
+             
+        
             fail = 1;
-            waitforbuttonpress
+            
             break
              %Intial outcome 2/2 leads to 'lose' (too much debt)
           end
@@ -77,7 +77,9 @@ asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
    end
 
 end
-
+if money < 0
+    fail = 1;
+end
 if fail == 0
 %     disp("You somehow made it through without losing all of your money!");
 %     disp("Here is your final money count.");
@@ -90,19 +92,28 @@ if fail == 0
     
 else
 %     disp("You may need to watch your finances more carefully...");
+    text_str= (["You failed at a debt amount of",abs(money), "Click to Proceed"]);
+    imshow(bg)
+        text(50, 600,text_str,'Color','#D95319','FontSize',20);
+    waitforbuttonpress
     text_str= (["You may need to watch your finances more carefully","Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',18);
-waitforbuttonpress   
+    waitforbuttonpress   % can we combine these 2?
 end
 
 %Final outcome (lose) 2/2 
 
-sortedx = insertion_sortIBL(pArray); % need a new slide for this with explanation
-text_str= (["Here are your sorted expenses, track them", "monthly so that you know what", "your spending correlates to:", sortedx]);
-
+sortedx = flip(insertion_sortIBL(pArray)); % need a new slide for this with explanation
+text_str= (["Here are your sorted one-time", "expenses, track them monthly so that", "you know what your spending correlates to:", sortedx]);
 imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18);
+waitforbuttonpress
+sortedy = flip(insertion_sortIBL(pmArray)); 
+text_str= (["Here are your sorted monthly", "expenses, track them monthly so that", "you know what your spending correlates to:", sortedy]);
+imshow(bg)
+text(50, 600,text_str,'Color','#D95319','FontSize',18);
+waitforbuttonpress
  
 yn = questdlg('Would you like to read advice about budgeting?', 'Budgeting', 'Yes', 'No', 'No'); %Question dialog asking the user if they would like advice about budgeting
 switch yn

@@ -7,7 +7,7 @@ monthlymood = 0; %monthlymood change placeholder
 loan = 0; % loan placeholder
 loanCount = 0; % loancount placeholder
 fail = 0; % fail condition
-pArray = [] % array of prices spent over game
+pArray = []; % array of prices spent over game
 %above are all the variables needed for the code
 
 
@@ -61,76 +61,57 @@ asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
  waitforbuttonpress
                 fail = 1;
                 break
+                
+                %Intial outcome 1/2 leads to 'lose' (too many loans)
          end
     case 'No'
              text_str= (["You failed at a debt amount of",abs(money), "Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
             fail = 1;
-            
+            waitforbuttonpress
             break
+             %Intial outcome 2/2 leads to 'lose' (too much debt)
           end
 %     
-      end
-%         if takeLoan == 1 % if take loan
-%             if loanCount < 2
-%                 askloanamount = inputdlg("Please take out a loan: "); % take loan input
-%           loan = str2num(askloanamount{1});
-% %             loan = input("Please take out a loan: "); 
-%                 money = money + loan; % you get the loan
-%                 monthly = monthly + loan/12; % but you lose money per month
-%                 loanCount = loanCount + 1;
-%             else
-%                 disp("Sorry, but your outstanding loans mean you are financially dead now.");
-%                 disp("You failed at a debt amount of"); % this ends all loops
-%                 disp(abs(money));
-%                   text_str= (["Sorry, but your outstanding loans", "mean you are financially dead now.", "You failed at a debt amount of",abs(money), "Click to Proceed"]);
-%         imshow(bg)
-%         text(50, 600,text_str,'Color','#D95319','FontSize',20);
-%  waitforbuttonpress
-%                 fail = 1;
-%                 break
-%             end
-%         else
-%             disp("You failed at a debt amount of"); % this ends all loops
-%             disp(abs(money));
-%             text_str= (["You failed at a debt amount of",abs(money), "Click to Proceed"]);
-%         imshow(bg)
-%         text(50, 600,text_str,'Color','#D95319','FontSize',20);
-%             fail = 1;
-            
-%             break
-%         end
-%     end
-% end
+   end
+
 end
 
 if fail == 0
 %     disp("You somehow made it through without losing all of your money!");
 %     disp("Here is your final money count.");
 %     disp(money);
-    text_str= (["You somehow made it through without losing all of", "your money! Here is your final money count.",money]);
+    text_str= (["You somehow made it through without losing all of", "your money! Here is your final money count.",money, "Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
+    waitforbuttonpress
+%Final outcome (win) 1/2   
     
 else
 %     disp("You may need to watch your finances more carefully...");
-    text_str= ("You may need to watch your finances more carefully");
+    text_str= (["You may need to watch your finances more carefully","Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',18);
-   
+waitforbuttonpress   
 end
 
-insertion_sortIBL(pArray) % need a new slide for this with explanation
+%Final outcome (lose) 2/2 
 
-yn = inputdlg('Would you like to read advice about budgeting (1 = yes, 2 = no)?');
- ynx= str2num(yn{1});
- if ynx == 1
+sortedx = insertion_sortIBL(pArray); % need a new slide for this with explanation
+text_str= (["Here are your sorted expenses, track them", "monthly so that you know what", "your spending correlates to:", sortedx]);
+
+imshow(bg)
+text(50, 600,text_str,'Color','#D95319','FontSize',18);
+ 
+yn = questdlg('Would you like to read advice about budgeting?', 'Budgeting', 'Yes', 'No', 'No'); %Question dialog asking the user if they would like advice about budgeting
+switch yn
+    case 'Yes' %If yes
 advice=imread('BudgetingAdvice.png'); 
 imshow(advice) %Shows budgeting advice
- else
-     close
- end
+    case 'No'
+     close %closes program
+end
  
 % display all the costs you incurred using the sorting algorithm as well
 % advice here, maybe after each individual question too is possible

@@ -46,7 +46,7 @@ elseif a == 3
 %     disp("All your friends are going shopping for clothes! Will you go with them?");
 %     q = input(" yes = 1, no = 2" );
     q = questdlg('All your friends are going shopping for clothes! Will you go with them (estimated cost $500)?','Clothing','Yes','No', 'No');
-%response
+%response converted to yes/no cases
 switch q
     case 'Yes'
            p = 500;
@@ -68,10 +68,7 @@ else
 %     disp("A month passes without you making any important financial decisions.");
 %     input("Input anything to proceed.");
     waitforbuttonpress
-%       text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Monthly Change in Mood:",monthlymood]);
-%         bgx = imread('BackgroundAlohaGeneral.png');
-%       imshow(bgx)
-%         text(50, 400,text_str,'Color','#D95319','FontSize',25);
+
 % placeholder test and structure of the code, dont use
 %     answer = input("Test1 answer: "); 
 %     if answer == 1

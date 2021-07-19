@@ -62,13 +62,19 @@ switch q
 %        disp("Are clothes worth it?");
 end
 elseif a == 4
-    disp("How much will you be spending on food per month? The average is ___"); %disp as part of image
+    food = imread('Food.png');
+    imshow(food)
+%     disp("How much will you be spending on food per month? The average is 320 per month"); %disp as part of image
     i = 0;
     while i == 0
         px = inputdlg("Amount: ");
         p = str2num(px{1});
         if p < 50
-            disp("Try not to starve yourself to death. Food is necessary.")
+                text_str= (["Try not to starve yourself. Food is necessary.", "Click to try again."]);
+        imshow(bg)
+        
+        text(50, 400,text_str,'Color','#D95319','FontSize',25);
+%             disp("Try not to starve yourself. Food is necessary.")
         else
             i = 1;
         end
@@ -76,7 +82,20 @@ elseif a == 4
     monthly = monthly + p;
     pmArray = [pmArray p];
 elseif a == 5
-    disp("NEW LAPTOP ON SALE! 3000 DOLLARS!!!");
+    laptop = imread('Laptop.png');
+    imshow(laptop)
+    fq = questdlg('Buy the laptop?', 'Laptop', 'Yes','No', 'No');
+    switch fq
+    case 'Yes'
+        p = 3000;
+        money = money - 3000;
+        mood = mood + 10;
+        pArray = [pArray p];
+%         disp("Are clothes worth it?");
+    case 'No'
+
+    end
+%     disp("NEW LAPTOP ON SALE! 3000 DOLLARS!!!");
     % yes or no
     % if yes, money down 3k and mood up
         % money = money - 3000;

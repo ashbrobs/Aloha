@@ -5,6 +5,8 @@ sa3 = imread('Sa3.png');
 sa4 = imread('Sa4.png');
 bg = imread('BackgroundAlohaGeneral.png');
 si = imread('SIntro.png');
+
+
 %Reads images
 imshow(startscreen) %Displays start screen
 s = ginput(1); %This is the basic GUI code for our program. The user will click a button depending on the prompt.

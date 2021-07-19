@@ -105,7 +105,7 @@ end
 %Final outcome (lose) 2/2 
 
 sortedx = flip(insertion_sortIBL(pArray)); % need a new slide for this with explanation
-text_str= (["Here are your sorted one-time", "expenses, track them monthly so that", "you know what your spending correlates to:", sortedx]);
+text_str= (["Here are your sorted one-time", "expenses from highest to lowest, track them monthly so", "that you know what your spending correlates to:", sortedx]);
 imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress

@@ -1,5 +1,5 @@
 %greet user and explain situation, needs code
-money = inputdlg("Input Budget for 12 months: "); %Allows user to input budget without leaving figure
+money = inputdlg("Input Budget for 12 months. Integers only, no commas: "); %Allows user to input budget without leaving figure
 money = str2num(money{1}); %converts string to numerical values
 monthly = 0; % placeholder
 mood = 50; % happiness placeholder

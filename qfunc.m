@@ -1,4 +1,5 @@
 function [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray) 
+bg = imread('BackgroundAlohaGeneral.png');
 % all variables as inputs and outputs
 if a == 1 % if statements call questions
 %     disp("q1 test");
@@ -70,7 +71,7 @@ elseif a == 4
         px = inputdlg("Amount: ");
         p = str2num(px{1});
         if p < 50
-                text_str= (["Try not to starve yourself. Food is necessary.", "Click to try again."]);
+                text_str= (["Try not to starve yourself.", "Food is necessary."]);
         imshow(bg)
         
         text(50, 400,text_str,'Color','#D95319','FontSize',25);

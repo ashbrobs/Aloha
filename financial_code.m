@@ -22,10 +22,10 @@ for x = 1:length(questions) % iterates through code number of questions times
     % moment
     a = questions(x); % sets var a equal to the value in array questions
     if money > 0 
+        text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Click to Proceed"]);
+        imshow(bg)
         money = money - monthly; % monthly change in money
         mood = mood + monthlymood + money/10000 - monthly/1000; % monthly change in mood
-         text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Click to Proceed"]);
-        imshow(bg)
         text(50, 400,text_str,'Color','#D95319','FontSize',25);
         waitforbuttonpress
         [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray);
@@ -56,7 +56,7 @@ asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
 %                 disp("Sorry, but your outstanding loans mean you are financially dead now.");
 %                 disp("You failed at a debt amount of"); % this ends all loops
 %                 disp(abs(money));
-                  text_str= (["Sorry, but your outstanding loans", "mean you are financially dead now.", "You failed at a debt amount of",abs(money), "Click to Proceed"]);
+                  text_str= (["Sorry, but your outstanding loans", "mean you are financially dead now.", "Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
  waitforbuttonpress
@@ -84,7 +84,7 @@ if fail == 0
 %     disp("You somehow made it through without losing all of your money!");
 %     disp("Here is your final money count.");
 %     disp(money);
-    text_str= (["You somehow made it through without losing all of", "your money! Here is your final money count.",money, "Click to Proceed"]);
+    text_str= (["You somehow made it through", "without losing all of your money!", "Here is your final money count.",money, "Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
     waitforbuttonpress
@@ -92,25 +92,21 @@ if fail == 0
     
 else
 %     disp("You may need to watch your finances more carefully...");
-    text_str= (["You failed at a debt amount of",abs(money), "Click to Proceed"]);
+    text_str= (["You failed at a debt amount of",abs(money), " ", "You may need to watch your finances more carefully", "Click to Proceed"]);
     imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
-    waitforbuttonpress
-    text_str= (["You may need to watch your finances more carefully","Click to Proceed"]);
-        imshow(bg)
-        text(50, 600,text_str,'Color','#D95319','FontSize',18);
-    waitforbuttonpress   % can we combine these 2?
+    waitforbuttonpress   
 end
 
 %Final outcome (lose) 2/2 
 
 sortedx = flip(insertion_sortIBL(pArray)); % need a new slide for this with explanation
-text_str= (["Here are your sorted one-time", "expenses from highest to lowest, track them monthly so", "that you know what your spending correlates to:", sortedx]);
+text_str= (["Here are your sorted one-time", "expenses from highest to lowest.", "Track them monthly so", "that you know what your spending correlates to:", sortedx]);
 imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress
 sortedy = flip(insertion_sortIBL(pmArray)); 
-text_str= (["Here are your sorted monthly", "expenses, track them monthly so that", "you know what your spending correlates to:", sortedy]);
+text_str= (["Here are your sorted monthly", "expenses, track them monthly so that", "you know what your", "spending correlates to:", sortedy]);
 imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress

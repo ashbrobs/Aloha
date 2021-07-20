@@ -11,6 +11,7 @@ loanCount = 0; % loancount placeholder
 fail = 0; % fail condition
 pArray = []; % array of prices spent over game
 pmArray = [];
+loanArray = [];
 %above are all the variables needed for the code
 
 
@@ -53,6 +54,7 @@ asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
 %             loan = input("Please take out a loan: "); 
                 money = money + loan; % you get the loan
                 monthly = monthly + loan/12; % but you lose money per month
+                loanArray = [loanArray loan];
                 loanCount = loanCount + 1;
             else
 %                 disp("Sorry, but your outstanding loans mean you are financially dead now.");
@@ -112,7 +114,13 @@ text_str= (["Here are your sorted monthly", "expenses, track them monthly so tha
 imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress
- 
+sortedz = flip(insertion_sortIBL(loanArray)); 
+text_str= (["Here are your sorted loans", "that you hold:", sortedz]);
+imshow(bg)
+text(50, 600,text_str,'Color','#D95319','FontSize',18);
+waitforbuttonpress
+% add loans amounts
+
 yn = questdlg('Would you like to read advice about budgeting?', 'Budgeting', 'Yes', 'No', 'No'); %Question dialog asking the user if they would like advice about budgeting
 switch yn
     case 'Yes' %If yes

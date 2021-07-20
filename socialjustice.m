@@ -1,8 +1,8 @@
 imshow(si) %Choose screen for U.S. or International current events
 u = ginput(1);
     %ask for user click
-ix = u(1)>500 && u(1)<550;
-iy = u(2)>1950 && u(2)<2150;
+ix = u(1)>250 && u(1)<750;
+iy = u(2)>1850 && u(2)<2250;
     %coordinates with a range of error for user clicks
 if ix && iy == 1
     text_str = "Learning about what is going on outside of the nation is a great way to look at the big picture! Please select a country on the map (South Africa, Palestine, or China) to focus on.";
@@ -41,34 +41,38 @@ if ix && iy == 1
                             imshow(sa4)
                             text(340, 10,text_str,'Color','#D95319','FontSize',12)
                             z = waitforbuttonpress;  
-%This version loads the image first with the question would you like to donate, then shows links in a seprate figure.
+%Loads an image first asking the user if they would like to help (click to proceed). Then shows links in a seprate figure.
             if z == 0
                 fig = uifigure;
                 hlink = uihyperlink(fig);
-                hlink.Text = 'Subscribe';
+                hlink.Text = 'Subscribe'; %Subscribe to a mailing list.
                 hlink.URL = 'https://action.hrw.org/page/34570/subscribe/1';
+                %Hyperlinked, opens link in a browser.
                 hlink.Position = [100 220 70 22];
 %Positions links for different resources.
 
                 hlink2 = uihyperlink(fig);
-                hlink2.Text = 'Donate';
+                hlink2.Text = 'Donate'; %Donate to the cause.
                 hlink2.URL = 'https://donate.hrw.org/page/65440/donate/1?ea.tracking.id=EP2021EVpg';
 
 
 
                 hlink3 = uihyperlink(fig);
-                hlink3.Text = 'Petition';
+                hlink3.Text = 'Petition'; %Sign a petition.
                 hlink3.URL = 'https://www.thepetitionsite.com/243/366/680/south-africa-stop-discrimination-against-children-with-disabilities/';
                 hlink3.Position = [100 160 70 22];
 
                 hlink4 = uihyperlink(fig);
-                hlink4.Text = 'Read More';
+                hlink4.Text = 'Read More'; %Read the article where our information for this topic was sourced from.
                 hlink4.URL = 'https://www.hrw.org/news/2019/05/24/south-africa-children-disabilities-shortchanged';
                 hlink4.Position = [100 280 70 22];
             end
                      end
              end
+        else 
+             close %Our demo currently supports the South Africa selection only
         end
+         
 else
     close %Our demo currently supports the 'International' option only
 end

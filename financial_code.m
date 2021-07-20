@@ -21,31 +21,26 @@ questions = questions(randperm(length(questions))); % randomizes questions
 
 for x = 1:length(questions) % iterates through code number of questions times
     % loans take up a question slot with this loop, so you lose that question
-    % perhaps can be fixed with a while loop, however is unnecessary at the
-    % moment
     a = questions(x); % sets var a equal to the value in array questions
     if money > 0 
         text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Click to Proceed"]);
-        imshow(bg)
+        imshow(bg) %Blank background with Aloha logo.
         money = money - monthly; % monthly change in money
         mood = mood + monthlymood + money/10000 - monthly/1000; % monthly change in mood
-        text(50, 400,text_str,'Color','#D95319','FontSize',25);
+        text(50, 400,text_str,'Color','#D95319','FontSize',25); %Shows text and variables on top of background
         waitforbuttonpress
         [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray);
         
-        % calls output of the qfunc function
+        % calls output of the qfunc function. Refer to qfunc.m for
+        % comments.
      
        
  %Same as social justice section, text is added to a blank background. This
  %screen will show the user money, costs, and mood.
         
     else
-        %         tl = ginput(1);
-%         xtl = tl(1)>%xmin && tl(1)<%xmax; %X coordinates of yes button
-% tfytl = tl(2)>%ymin && tl(2)<%ymax; %Y coordinates of yes button
-%         asktakeLoan = inputdlg("Take a loan? (1 = yes, 2 = no): "); % take loan input
-%           takeLoan = str2num(asktakeLoan{1});
-asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
+
+asktakeloan = questdlg('You have run out of money. Take a loan?','Loan','Yes','No', 'No'); %Question pop-up.
           switch asktakeloan
     case 'Yes'
          if loanCount < 2
@@ -81,38 +76,35 @@ asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
    end
 
 end
-if money < 0
+if money < 0 %See line 86
     fail = 1;
 end
 if fail == 0
-%     disp("You somehow made it through without losing all of your money!");
-%     disp("Here is your final money count.");
-%     disp(money);
     text_str= (["You somehow made it through", "without losing all of your money!", "Here is your final money count.",money, "Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
     waitforbuttonpress
 %Final outcome (win) 1/2   
     
-else
-%     disp("You may need to watch your finances more carefully...");
+else %If money <0
     text_str= (["You failed at a debt amount of",abs(money), " ", "You may need to watch your finances more carefully", "Click to Proceed"]);
     imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
     waitforbuttonpress   
 end
 
-%Final outcome (lose) 2/2 
+%Final outcome (lose) 2/2. This outcome occurs if there are too many loans,
+%an amount in debt, or the user ran out of money and did not take a loan.
 
-sortedx = flip(insertion_sortIBL(pArray)); % need a new slide for this with explanation
+sortedx = flip(insertion_sortIBL(pArray)); %Insertion sort. Sorts the one-time expenses from highest to lowest.
 text_str= (["Here are your sorted one-time", "expenses from highest to lowest.", "Track them monthly so", "that you know what your spending correlates to:", sortedx]);
 imshow(bg)
-text(50, 600,text_str,'Color','#D95319','FontSize',18);
+text(50, 600,text_str,'Color','#D95319','FontSize',18); %Loads sorted variables on blank background.
 waitforbuttonpress
-sortedy = flip(insertion_sortIBL(pmArray)); 
+sortedy = flip(insertion_sortIBL(pmArray)); %Insertion sort. Sorts monthly expenses from highest to lowest.
 text_str= (["Here are your sorted monthly", "expenses, track them monthly so that", "you know what your", "spending correlates to:", sortedy]);
 imshow(bg)
-text(50, 600,text_str,'Color','#D95319','FontSize',18);
+text(50, 600,text_str,'Color','#D95319','FontSize',18); %Loads sorted monthly variables on blank background.
 waitforbuttonpress
 sortedz = flip(insertion_sortIBL(loanArray)); 
 text_str= (["Here are your sorted loans", "that you hold:", sortedz]);
@@ -130,5 +122,3 @@ imshow(advice) %Shows budgeting advice
      close %closes program
 end
  
-% display all the costs you incurred using the sorting algorithm as well
-% advice here, maybe after each individual question too is possible

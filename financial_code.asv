@@ -1,4 +1,6 @@
-
+FStart = imread('FStart.png');
+imshow(FStart) %Financial literacy start screen
+waitforbuttonpress %Wait for user to click before proceeding. This is used multiple times in our code.
 money = inputdlg("Input Budget for 12 months. Integers only, no commas: "); %Allows user to input budget without leaving figure
 money = str2num(money{1}); %converts string to numerical values
 monthly = 0; % placeholder
@@ -18,15 +20,13 @@ questions = questions(randperm(length(questions))); % randomizes questions
 
 for x = 1:length(questions) % iterates through code number of questions times
     % loans take up a question slot with this loop, so you lose that question
-    % perhaps can be fixed with a while loop, however is unnecessary at the
-    % moment
     a = questions(x); % sets var a equal to the value in array questions
     if money > 0 
         text_str= (["Total Money:",money, "Monthly Costs:", monthly, "Mood:", mood, "Click to Proceed"]);
-        imshow(bg)
+        imshow(bg) %Blank background with Aloha logo.
         money = money - monthly; % monthly change in money
         mood = mood + monthlymood + money/10000 - monthly/1000; % monthly change in mood
-        text(50, 400,text_str,'Color','#D95319','FontSize',25);
+        text(50, 400,text_str,'Color','#D95319','FontSize',25); %Shows text and variables on top of background
         waitforbuttonpress
         [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray);
         
@@ -37,12 +37,8 @@ for x = 1:length(questions) % iterates through code number of questions times
  %screen will show the user money, costs, and mood.
         
     else
-        %         tl = ginput(1);
-%         xtl = tl(1)>%xmin && tl(1)<%xmax; %X coordinates of yes button
-% tfytl = tl(2)>%ymin && tl(2)<%ymax; %Y coordinates of yes button
-%         asktakeLoan = inputdlg("Take a loan? (1 = yes, 2 = no): "); % take loan input
-%           takeLoan = str2num(asktakeLoan{1});
-asktakeloan = questdlg('Take a loan?','Loan','Yes','No', 'No');
+
+asktakeloan = questdlg('You have run out of money. Take a loan?','Loan','Yes','No', 'No'); %Question pop-up.
           switch asktakeloan
     case 'Yes'
          if loanCount < 2
@@ -91,14 +87,15 @@ if fail == 0
 %Final outcome (win) 1/2   
     
 else
-%     disp("You may need to watch your finances more carefully...");
     text_str= (["You failed at a debt amount of",abs(money), " ", "You may need to watch your finances more carefully", "Click to Proceed"]);
     imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
     waitforbuttonpress   
 end
 
-%Final outcome (lose) 2/2 
+%Final outcome (lose) 2/2. This outcome occurs if there are too many loans,
+%a
+%or the user did not take a loan.
 
 sortedx = flip(insertion_sortIBL(pArray)); % need a new slide for this with explanation
 text_str= (["Here are your sorted one-time", "expenses from highest to lowest.", "Track them monthly so", "that you know what your spending correlates to:", sortedx]);

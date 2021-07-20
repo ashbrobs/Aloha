@@ -107,7 +107,7 @@ imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18); %Loads sorted monthly variables on blank background.
 waitforbuttonpress
 sortedz = flip(insertion_sortIBL(loanArray)); 
-text_str= (["Here are your sorted loans", "that you hold:", sortedz]);
+text_str= (["Here are your loans", "that you currently hold:", sortedz]);
 imshow(bg)
 text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress

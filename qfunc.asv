@@ -109,10 +109,9 @@ elseif a == 5
 else
     pro = imread('pro.png');
     imshow(pro)
-%This question will appear whenever one of the other 5 are not randomly
-%chosen. It is used to move time along, while still subtracting all monthly
-%costs and affecting mood depending on the user's previous decisions. The
-%user clicks anywhere to proceed to the next questions.
+
+%     disp("A month passes without you making any important financial decisions.");
+%     input("Input anything to proceed.");
     waitforbuttonpress
 
 % placeholder test and structure of the code, dont use

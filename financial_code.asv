@@ -30,8 +30,7 @@ for x = 1:length(questions) % iterates through code number of questions times
         waitforbuttonpress
         [money, monthly, mood, monthlymood, pArray, pmArray] = qfunc(a, money, monthly, mood, monthlymood, pArray, pmArray);
         
-        % calls output of the qfunc function. Refer to qfunc.m for
-        % comments.
+        % calls output of the qfunc function
      
        
  %Same as social justice section, text is added to a blank background. This
@@ -74,17 +73,20 @@ asktakeloan = questdlg('You have run out of money. Take a loan?','Loan','Yes','N
    end
 
 end
-if money < 0 %See line 86
+if money < 0
     fail = 1;
 end
 if fail == 0
+%     disp("You somehow made it through without losing all of your money!");
+%     disp("Here is your final money count.");
+%     disp(money);
     text_str= (["You somehow made it through", "without losing all of your money!", "Here is your final money count.",money, "Click to Proceed"]);
         imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
     waitforbuttonpress
 %Final outcome (win) 1/2   
     
-else %If money <0
+else
     text_str= (["You failed at a debt amount of",abs(money), " ", "You may need to watch your finances more carefully", "Click to Proceed"]);
     imshow(bg)
         text(50, 600,text_str,'Color','#D95319','FontSize',20);
@@ -92,17 +94,18 @@ else %If money <0
 end
 
 %Final outcome (lose) 2/2. This outcome occurs if there are too many loans,
-%an amount in debt, or the user ran out of money and did not take a loan.
+%a
+%or the user did not take a loan.
 
-sortedx = flip(insertion_sortIBL(pArray)); %Insertion sort. Sorts the one-time expenses from highest to lowest.
+sortedx = flip(insertion_sortIBL(pArray)); % need a new slide for this with explanation
 text_str= (["Here are your sorted one-time", "expenses from highest to lowest.", "Track them monthly so", "that you know what your spending correlates to:", sortedx]);
 imshow(bg)
-text(50, 600,text_str,'Color','#D95319','FontSize',18); %Loads sorted variables on blank background.
+text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress
-sortedy = flip(insertion_sortIBL(pmArray)); %Insertion sort. Sorts monthly expenses from highest to lowest.
+sortedy = flip(insertion_sortIBL(pmArray)); 
 text_str= (["Here are your sorted monthly", "expenses, track them monthly so that", "you know what your", "spending correlates to:", sortedy]);
 imshow(bg)
-text(50, 600,text_str,'Color','#D95319','FontSize',18); %Loads sorted monthly variables on blank background.
+text(50, 600,text_str,'Color','#D95319','FontSize',18);
 waitforbuttonpress
  
 yn = questdlg('Would you like to read advice about budgeting?', 'Budgeting', 'Yes', 'No', 'No'); %Question dialog asking the user if they would like advice about budgeting
@@ -114,3 +117,5 @@ imshow(advice) %Shows budgeting advice
      close %closes program
 end
  
+% display all the costs you incurred using the sorting algorithm as well
+% advice here, maybe after each individual question too is possible

@@ -25,7 +25,7 @@ elseif a == 2
     c = ginput(1);
     xb = c(1)>460 && c(1)<540; %Bus button X min and max.
     yb = c(2)>1480 && c(2)<1620; %Bus button Y min and max.
-    xc = c(1)>480 && c(1) < 580; %Car button X min and max.
+    xc = c(1)>400 && c(1) < 680; %Car button X min and max.
     yc = c(2)>1950 && c(2) <2120; %Car button Y min and max.
 
 %Prompts user to choose between bus and car
